@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | EduMotion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* الأساسيات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            padding-top: 80px; /* لحساب ارتفاع النافبار */
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-left: 10px;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            margin-left: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .logo:hover span {
+            color: #1E40AF;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e40af;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        /* نموذج تسجيل الدخول */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 20px;
+        }
+
+        .auth-form {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin: 20px 0;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .form-title {
+            font-size: 24px;
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* حقول الإدخال */
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px 0;
+            font-size: 16px;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            background: transparent;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-label {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            font-size: 16px;
+            color: #777;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .input-field:focus ~ .input-label,
+        .input-field:valid ~ .input-label {
+            top: -15px;
+            font-size: 12px;
+            color: #2563eb;
+        }
+
+        .input-field:focus {
+            border-bottom: 2px solid #2563eb;
+        }
+
+        /* خيارات تذكرني ونسيت كلمة المرور */
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-left: 8px;
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+        }
+
+        .forgot-password a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* زر الإرسال */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* الروابط الإضافية */
+        .form-footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .form-footer a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .auth-form {
+                padding: 30px 20px;
+            }
+            
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .login-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Loader -->
+    <div id="page-loader">
+        <div class="loader"></div>
+    </div>
+    <nav class="navbar">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="logo">
+                        <img src="assistant/img/education.png" alt="EDU" />
+                        <span>EduMotion</span>
+                    </a>
+
+                    <div class="nav-links">
+                        <div class="nav-buttons" id="auth-buttons">
+                        <a href="register.html" class="btn btn-primary">تسجيل حساب</a>
+                        <a href="login.html" class="btn btn-primary">تسجيل دخول</a>
+                        </div>
+
+                        
+                    
+                </div>
+            </div>
+        </nav>
+
+
+    <!-- نموذج تسجيل الدخول -->
+    <div class="auth-container">
+        <form class="auth-form" id="loginForm">
+            <div class="form-header">
+                <div class="form-logo">EDU</div>
+                <h2 class="form-title">تسجيل الدخول</h2>
+                <p class="form-subtitle">أدخل بياناتك للوصول إلى حسابك</p>
+            </div>
+            
+            <!-- حقل البريد الإلكتروني -->
+            <div class="input-group">
+                <input type="email" class="input-field" required>
+                <label class="input-label">البريد الإلكتروني</label>
+            </div>
+            
+            <!-- حقل كلمة المرور -->
+            <div class="input-group">
+                <input type="password" class="input-field" required>
+                <label class="input-label">كلمة المرور</label>
+            </div>
+            
+            <!-- خيارات تسجيل الدخول -->
+            <div class="login-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">تذكرني</label>
+                </div>
+                <div class="forgot-password">
+                    <a href="forgot-password.html">نسيت كلمة المرور؟</a>
+                </div>
+            </div>
+            
+            <!-- زر تسجيل الدخول -->
+            <button type="submit" class="submit-btn">تسجيل الدخول</button>
+            
+            <!-- روابط إضافية -->
+            <div class="form-footer">
+                <p>ليس لديك حساب؟ <a href="register.html">أنشئ حساب جديد</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // هنا يمكنك إضافة كود التحقق من صحة البيانات وإرسالها للخادم
+            const email = document.querySelector('input[type="email"]').value;
+            const password = document.querySelector('input[type="password"]').value;
+            
+            if (email && password) {
+                alert('تم تسجيل الدخول بنجاح! سيتم توجيهك إلى لوحة التحكم');
+                // window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+    <script src="assistant/js/master.js"></script>
+</body>
+</html>

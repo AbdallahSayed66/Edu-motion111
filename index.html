@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDU | المنصة التعليمية للثانوية العامة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assistant/css/master.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+</head>
+<body>
+        <!-- Loader -->
+    <div id="page-loader">
+        <div class="loader"></div>
+    </div>
+
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="logo">
+                        <img src="assistant/img/education.png" alt="EDU" />
+                        <span>EduMotion</span>
+                    </a>
+
+                    <div class="nav-links">
+                        <div class="nav-buttons" id="auth-buttons">
+                        <a href="register.html" class="btn btn-primary">تسجيل حساب</a>
+                        <a href="login.html" class="btn btn-primary">تسجيل دخول</a>
+                        </div>
+
+                        <!-- عنصر الحساب هيظهر فقط لو المستخدم مسجل -->
+                        <div class="account-dropdown" id="account-menu" style="display: none;">
+                        <div class="account-icon">
+                            <i class="fas fa-user-circle"></i>
+                            <span>أهلاً، عبد الله</span>
+                            <i class="fas fa-chevron-down arrow"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">📚 كورساتي</a></li>
+                            <li><a href="#">📊 نتائجي</a></li>
+                            <li><a href="#">🚪 تسجيل الخروج</a></li>
+                        </ul>
+                        </div>
+                    </div>
+
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+
+
+    <!-- القسم الرئيسي -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content animate">
+                    <h1>منصة EduMotion التعليمية للثانوية العامة</h1>
+                    <p>الطريق الأسهل للتفوق والتحضير الجيد لامتحانات الثانوية العامة. تعلم بطريقة تفاعلية مع أفضل المدرسين.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="register.html" class="btn btn-primary">يلا انضم لينا يا صديقي</a>
+                        
+                    </div>
+                </div>
+                
+                <div class="hero-image animate delay-1">
+                    <img src="assistant/img/6b21731b-7c1a-4287-8fcf-d1e7a14efd2a-removebg-preview.png" alt="منصة EDU التعليمية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مميزات المنصة -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title animate">مميزات منصة EduMotion</h2>
+            <p class="section-subtitle animate delay-1">اكتشف لماذا منصتنا هي الخيار الأفضل للتحضير للثانوية العامة</p>
+            
+            <div class="features-grid">
+                <div class="feature-card animate delay-1" data-aos="fade-right">
+                    <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                    </div>
+                    <h3>فيديوهات تعليمية</h3>
+                    <p>دروس مسجلة بجودة عالية تغطي كل أجزاء المنهج</p>
+                </div>
+
+                <div class="feature-card animate delay-2" data-aos="fade-left">
+                    <div class="feature-icon">
+                    <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>تمارين وتقييم</h3>
+                    <p>اختبارات بعد كل درس مع تصحيح آلي فوري</p>
+                </div>
+
+                <div class="feature-card animate delay-3" data-aos="fade-right">
+                    <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>متابعة الأداء</h3>
+                    <p>تقارير مفصلة عن تقدمك ونقاط الضعف</p>
+                </div>
+
+                <div class="feature-card animate delay-4" data-aos="fade-left">
+                    <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>محتوى تفاعلي</h3>
+                    <p>سلايدز، كويزات، وألعاب تعليمية بتخليك تتعلم وانت مستمتع</p>
+                </div>
+
+                <div class="feature-card animate delay-5" data-aos="fade-right">
+                    <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                    </div>
+                    <h3>نظام نقاط ومكافآت</h3>
+                    <p>اكسب نقاط مع كل إنجاز، وافتح شارات وهدايا تشجيعية</p>
+                </div>
+
+                <div class="feature-card animate delay-6" data-aos="fade-left">
+                    <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>دردشة مباشرة</h3>
+                    <p>تواصل فوري مع المدرسين لحل الأسئلة والاستفسارات</p>
+                </div>
+            </div>
+
+    </section>
+
+    <!-- السنوات الدراسية -->
+    <section class="grades">
+        <div class="container"> 
+            <h2 class="section-title" style="opacity:1; transform:translateY(0);">اختار سنتك الدراسيه يصديقي</h2>
+
+            <div class="grades-grid">
+                
+                <div class="grade-card animate delay-1">
+                    <div class="grade-image">
+                        <img src="assistant/img/download.jpg" alt="الصف الأول الثانوي">
+                    </div>
+                    <div class="grade-content">
+                        <h3 class="grade-title">الصف الأول الثانوي</h3>
+                        <p class="grade-description">شرح كامل للمنهج مع تمارين وتطبيقات عملية</p>
+                        <a href="first-year.html" class="btn btn-primary">ابدأ التعلم</a>
+                    </div>
+                </div>
+                
+                <div class="grade-card animate delay-2">
+                    <div class="grade-image">
+                        <img src="assistant/img/download.jpg" alt="الصف الثاني الثانوي">
+                    </div>
+                    <div class="grade-content">
+                        <h3 class="grade-title">الصف الثاني الثانوي</h3>
+                        <p class="grade-description">تحضير شامل لامتحانات منتصف ونهاية العام</p>
+                        <a href="second-year.html" class="btn btn-primary">ابدأ التعلم</a>
+                    </div>
+                </div>
+                
+                <div class="grade-card animate delay-3">
+                    <div class="grade-image">
+                        <img src="assistant/img/download.jpg" alt="الصف الثالث الثانوي">
+                    </div>
+                    <div class="grade-content">
+                        <h3 class="grade-title">الصف الثالث الثانوي</h3>
+                        <p class="grade-description">تحضير مكثف لامتحانات الثانوية العامة</p>
+                        <a href="therd-year.html" class="btn btn-primary">ابدأ التعلم</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <p class="footer-about">منصة تعليمية متكاملة تهدف إلى تقديم أفضل تجربة تعلم لطلاب الثانوية العامة في مصر.</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                
+                
+                <div>
+                    <h3 class="footer-title">تواصل معنا</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</li>
+                        <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@edu.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <h3>جميع الحقوق محفوظة. &copy; Powered By <a href="#" class="Abdallah">Abdallah</a>. </h3>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assistant/js/master.js"></script>
+   
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 800,      // مدة الحركة
+        once: false,        // يخليها تشتغل كل مرة تظهر
+        mirror: true        // تشتغل لما تنزل وتطلع
+    });
+    </script>
+        <script>
+    window.addEventListener("load", function () {
+        const loader = document.getElementById("page-loader");
+
+        loader.style.opacity = "0";
+
+        setTimeout(() => {
+        loader.style.display = "none";
+        }, 500); // يختفي بعد نصف ثانية بسلاسة
+    });
+    </script>
+
+
+</body>
+</html>

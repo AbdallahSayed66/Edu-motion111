@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تفعيل الكود | EduMotion</title>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .code-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #2563eb;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .result-box {
+            font-size: 1.1rem;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            font-weight: bold;
+        }
+
+        .result-box.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-box.success {
+            background-color: #e0fce5;
+            color: #228b22;
+            border: 1px solid #2ecc71;
+        }
+
+        .result-box.error {
+            background-color: #fde8e8;
+            color: #c0392b;
+            border: 1px solid #e74c3c;
+        }
+
+        .result-box.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffc107;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .global-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            color: white;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease;
+            display: none;
+        }
+
+        .global-alert.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ألوان حسب نوع الرسالة */
+        .alert-success { background: #38b000; }
+        .alert-error   { background: #d00000; }
+        .alert-warning { background: #ff8800; }
+        .alert-info    { background: #0077b6; }
+
+    </style>
+</head>
+<body>
+    <div class="code-box">
+        <h2>تفعيل كود الشراء</h2>
+        <input type="text" id="codeInput" placeholder="أدخل الكود هنا...">
+        <button onclick="redeemCode()">تفعيل الكود</button>
+        <!-- <div id="result" class="result-box hidden"></div> -->
+        <!-- إشعار عام -->
+        <div class="global-alert" id="globalAlert"></div>
+
+    </div>
+
+    <script>
+        function redeemCode() {
+            const code = document.getElementById("codeInput").value.trim();
+            const resultBox = document.getElementById("result");
+
+            resultBox.className = "result-box"; // إزالة أي كلاس قديم
+
+            // مثال: الأكواد الصحيحة والمستخدمة
+            const validCodes = ["MATH-1234-XZ56", "BIO-8888-ABCD"];
+            const usedCodes = ["BIO-8888-ABCD"];
+
+            if (!validCodes.includes(code)) {
+                resultBox.textContent = "❌ الكود غير صالح.";
+                resultBox.classList.add("error", "show");
+            } else if (usedCodes.includes(code)) {
+                resultBox.textContent = "⚠️ هذا الكود تم استخدامه من قبل.";
+                resultBox.classList.add("warning", "show");
+            } else {
+                resultBox.textContent = "✅ تم تفعيل الكود بنجاح!";
+                resultBox.classList.add("success", "show");
+            }
+
+            resultBox.classList.remove("hidden");
+        }
+
+        function showAlert(type, message) {
+        const alertBox = document.getElementById("globalAlert");
+
+        // Reset الكلاسات
+        alertBox.className = "global-alert";
+
+        // تحديد اللون حسب النوع
+        switch(type) {
+            case "success":
+                alertBox.classList.add("alert-success");
+                break;
+            case "error":
+                alertBox.classList.add("alert-error");
+                break;
+            case "warning":
+                alertBox.classList.add("alert-warning");
+                break;
+            default:
+                alertBox.classList.add("alert-info");
+        }
+
+        alertBox.textContent = message;
+        alertBox.classList.add("show");
+
+        // اختفاء تلقائي بعد 3 ثواني
+        setTimeout(() => {
+            alertBox.classList.remove("show");
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 300);
+        }, 3000);
+    }
+        showAlert("success", "تم تسجيل الدخول بنجاح!");
+        showAlert("error", "حدث خطأ أثناء العملية");
+        showAlert("warning", "يرجى ملء جميع الحقول");
+        showAlert("info", "جارٍ تحميل البيانات...");
+
+    </script>
+</body>
+</html>

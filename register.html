@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل جديد | EduMotion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* الأساسيات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            padding-top: 80px; /* لحساب ارتفاع النافبار */
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-left: 10px;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            margin-left: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .logo:hover span {
+            color: #1E40AF;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e40af;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        /* نموذج التسجيل */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 20px;
+        }
+
+        .auth-form {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin: 20px 0;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-title {
+            font-size: 28px;
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* حقول الإدخال */
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px 0;
+            font-size: 16px;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            background: transparent;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-label {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            font-size: 16px;
+            color: #777;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .input-field:focus ~ .input-label,
+        .input-field:valid ~ .input-label {
+            top: -15px;
+            font-size: 12px;
+            color: #2563eb;
+        }
+
+        .input-field:focus {
+            border-bottom: 2px solid #2563eb;
+        }
+
+        /* خيارات المحافظة والتعليم */
+        .select-group {
+            margin-bottom: 25px;
+        }
+
+        .select-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 15px 0;
+            font-size: 16px;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            background: transparent;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 20px;
+        }
+
+        .select-field:focus {
+            border-bottom: 2px solid #2563eb;
+        }
+
+        /* خيارات التعليم */
+        .options-container {
+            margin-bottom: 25px;
+        }
+
+        .options-title {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .options-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .option-item {
+            flex: 1;
+        }
+
+        .option-item input {
+            display: none;
+        }
+
+        .option-item label {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .option-item input:checked + label {
+            border-color: #2563eb;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        /* زر الإرسال */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* الروابط الإضافية */
+        .form-footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .form-footer a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .auth-form {
+                padding: 30px 20px;
+            }
+            
+            .options-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Loader -->
+    <div id="page-loader">
+        <div class="loader"></div>
+    </div>
+       <nav class="navbar">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="logo">
+                        <img src="assistant/img/education.png" alt="EDU" />
+                        <span>EduMotion</span>
+                    </a>
+
+                    <div class="nav-links">
+                        <div class="nav-buttons" id="auth-buttons">
+                        <a href="register.html" class="btn btn-primary">تسجيل حساب</a>
+                        <a href="login.html" class="btn btn-primary">تسجيل دخول</a>
+                        </div>
+                </div>
+            </div>
+        </nav>
+    <!-- نموذج التسجيل -->
+    <div class="auth-container">
+        <form class="auth-form" id="registerForm">
+            <div class="form-header">
+                <h2 class="form-title">إنشاء حساب جديد</h2>
+                <p class="form-subtitle">انضم إلى منصة EduMotion للتعليم الإلكتروني</p>
+            </div>
+            
+            <!-- الأسماء -->
+            <div class="input-grid">
+                <div class="input-group">
+                    <input type="text" class="input-field" required>
+                    <label class="input-label">الاسم الأول</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" class="input-field" required>
+                    <label class="input-label">الاسم الثاني</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" class="input-field" required>
+                    <label class="input-label">الاسم الأخير</label>
+                </div>
+            </div>
+            
+            <!-- البريد وكلمة المرور -->
+            <div class="input-group">
+                <input type="email" class="input-field" required>
+                <label class="input-label">البريد الإلكتروني</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" class="input-field" required>
+                <label class="input-label">كلمة المرور</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" class="input-field" required>
+                <label class="input-label">تأكيد كلمة المرور</label>
+            </div>
+            
+            <!-- المحافظة -->
+            <div class="select-group">
+                <span class="select-label">المحافظة</span>
+                <select class="select-field" required>
+                    <option value="" disabled selected>اختر محافظتك</option>
+                    <option value="cairo">القاهرة</option>
+                    <option value="alex">الإسكندرية</option>
+                    <option value="giza">الجيزة</option>
+                    <option value="sharkia">الشرقية</option>
+                    <option value="dakahlia">الدقهلية</option>
+                    <option value="gharbia">الغربية</option>
+                </select>
+            </div>
+            
+            <!-- طريقة التعليم -->
+            <div class="options-container">
+                <span class="options-title">طريقة التعليم المفضلة</span>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="reg-online" name="education_type" value="online" checked>
+                        <label for="reg-online">أونلاين</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="reg-center" name="education_type" value="center">
+                        <label for="reg-center">السنتر</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="reg-both" name="education_type" value="both">
+                        <label for="reg-both">الاثنين معًا</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- نوع الحساب -->
+            <div class="options-container">
+                <span class="options-title">نوع الحساب</span>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="student" name="account_type" value="student" checked>
+                        <label for="student">طالب</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- زر التسجيل -->
+            <button type="submit" class="submit-btn">تسجيل الحساب</button>
+            
+            <!-- روابط إضافية -->
+            <div class="form-footer">
+                <p>هل لديك حساب بالفعل؟ <a href="login.html">سجل الدخول الآن</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // التحقق من تطابق كلمات المرور
+            const password = document.querySelector('input[type="password"]').value;
+            const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
+            
+            if (password !== confirmPassword) {
+                alert('كلمتا المرور غير متطابقتين');
+                return;
+            }
+            
+            // هنا يمكنك إضافة كود إرسال البيانات للخادم
+            alert('تم تسجيل الحساب بنجاح! سيتم توجيهك إلى لوحة التحكم');
+            // window.location.href = 'dashboard.html';
+        });
+    </script>
+    <script src="assistant/js/master.js"></script>
+</body>
+</html>
